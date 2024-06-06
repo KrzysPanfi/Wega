@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -10,7 +11,9 @@ public class Main {
         String filepath = "sygnaly 1.txt";
         ArrayList<String> slowa = Download(filepath);
         System.out.println(Zad1(slowa));
-
+        for(String i:Zad2(slowa)){
+            System.out.println(i);
+        }
     }
 
     public static ArrayList<String> Download(String filepath) {
@@ -36,7 +39,7 @@ public class Main {
 
     public static StringBuilder Zad1(ArrayList<String> slowa) {
         StringBuilder newstring = new StringBuilder();
-        for (int i = 1; i < slowa.size(); i++) {
+        for (int i = 40; i < slowa.size(); i++) {
             if (i % 40 == 0) {
                 try {
                     String str = slowa.get(i);
@@ -52,7 +55,25 @@ public class Main {
         return newstring;
     }
     public static ArrayList<String>Zad2(ArrayList<String>slowa){
-        
+        int count=0;
+        ArrayList<String>wynik=new ArrayList<>();
+        String najwiekszy="";
+        for(String i:slowa){
+            HashSet<Character> set=new HashSet<>();
+            char[] chars=i.toCharArray();
+            for(char j:chars){
+                set.add(j);
+            }
+            if(set.size()>count){
+                count=set.size();
+                najwiekszy=i;
+            }
+        }
+        wynik.add("Największy");
+        wynik.add(najwiekszy);
+        wynik.add("Dlugość");
+        wynik.add(Integer.toString(count));
+        return wynik;
     }
 
 }
