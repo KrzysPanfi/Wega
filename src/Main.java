@@ -14,6 +14,9 @@ public class Main {
         for(String i:Zad2(slowa)){
             System.out.println(i);
         }
+        for(String i:Zad3(slowa)){
+            System.out.println(i);
+        }
     }
 
     public static ArrayList<String> Download(String filepath) {
@@ -75,5 +78,24 @@ public class Main {
         wynik.add(Integer.toString(count));
         return wynik;
     }
-
+    public static ArrayList<String>Zad3(ArrayList<String>slowa){
+        String alfabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        ArrayList<String>wynik=new ArrayList<>();
+        for(String i:slowa){
+            char[]chars=i.toCharArray();
+            boolean difflowerthan10=true;
+            for(int j=1;j<chars.length;j++){
+                char znak=chars[j];
+                char znak1=chars[j-1];
+                int diff=alfabet.indexOf(znak)-alfabet.indexOf(znak1);
+                if(diff>10){
+                    difflowerthan10=false;
+                }
+            }
+            if(difflowerthan10){
+                wynik.add(i);
+            }
+        }
+        return wynik;
+    }
 }
